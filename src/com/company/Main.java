@@ -6,48 +6,19 @@ import java.io.InputStreamReader;
 
 public class Main {
 
+    private static final double Pi =3.14;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Enter n:");
-        int n = Integer.parseInt(br.readLine());
-        int squareN = (int)(Math.pow(n,2));
-        System.out.println("Square of n:" + squareN);
-        String strSquareN = Integer.toString(squareN);
+        System.out.print("Input radius:");
+        double radius = Double.parseDouble(br.readLine());
+        System.out.println("radius is" + radius);
 
-        char[] result = strSquareN.toCharArray();
-        char numberThree = '3';
-        String message = null;
-        for(int i = 0; i < result.length; i++){
-            if(numberThree == result[i]){
-                message = "Number is in this string!";
-                break;
-            }
-            else{
-                message = "Number isn't in this string!";
-            }
-        }
-        System.out.println(message);
+        double area = Pi * Math.pow(radius,2);
+        double perimeter = 2 * Pi * radius;
 
-        System.out.print("Reversed number: ");
-        StringBuilder reversedNumber = new StringBuilder(Integer.toString(n));
-        System.out.println(reversedNumber.reverse().toString());
-
-        char [] result2 = Integer.toString(n).toCharArray();
-
-        if(result2.length <= 1){
-            System.out.print("Number after permutation: " + n);
-        }
-        else{
-            char temp = result2[0];
-            result2[0] = result2[result2.length - 1];
-            result2[result2.length - 1] = temp;
-            System.out.print("Number after permutation: ");
-            for(int i = 0; i < result2.length; i++){
-                System.out.print(result2[i]);
-            }
-            System.out.println("\n");
-        }
-        System.out.print("Number with one number on the start and end:" + "1" + n + "1");
+        System.out.println("Area of flower bed: " + area);
+        System.out.println("Perimeter of flower bed: " + perimeter);
     }
 }
 
