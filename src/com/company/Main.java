@@ -9,17 +9,26 @@ class Information{
     private String name;
     private String address;
 
-    public Information(String name, String address){
-        this.name = name;
-        this.address = address;
-    }
     public String getName(){
         return name;
     }
     public String getAddress(){
         return address;
     }
-    public void Show(String name, String address){
+    void Show() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("What's your name ?");
+        System.out.print("Input your name: ");
+        String name = br.readLine();
+        if(name.isEmpty()){
+            throw new Exception("Write some text!!");
+        }
+        System.out.println("Where do you  live? ");
+        System.out.print("Input your address: ");
+        String address = br.readLine();
+        if(address.length() == 0){
+            throw new Exception("Write something!!!");
+        }
         System.out.println("Name is: " + name + " Address is: " + address);
     }
 }
@@ -77,17 +86,15 @@ class Flower{
 }
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         //Address_Name task
-        System.out.println("What's your name ?");
-        System.out.print("Input your name: ");
-        String name = br.readLine();
-        System.out.println("Where do you  live? ");
-        System.out.print("Input your address: ");
-        String address = br.readLine();
-        Information info = new Information(name,address);
-        info.Show(name,address);
+        try{
+            Information info = new Information();
+            info.Show();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
 
         //Tariff Task
         System.out.print("Tariff for the first country: ");
@@ -113,4 +120,3 @@ public class Main {
         flower.Calculate(flower.getRadius());
     }
 }
-
