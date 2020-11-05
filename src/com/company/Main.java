@@ -1,116 +1,103 @@
 package com.company;
 
-import javax.swing.text.TabableView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-class Information{
+
+class Person{
     private String name;
-    private String address;
+    private int birthYear;
 
-    public Information(String name, String address){
-        this.name = name;
-        this.address = address;
-    }
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public String getAddress(){
-        return address;
-    }
-    public void Show(String name, String address){
-        System.out.println("Name is: " + name + " Address is: " + address);
-    }
-}
 
-class Tariff{
-    private double c1,c2,c3;
-    private double t1,t2,t3;
-
-    public Tariff(double c1, double c2, double c3, double t1, double t2, double t3){
-        this.c1 = c1;
-        this.c2 = c2;
-        this.c3 = c3;
-        this.t1 = t1;
-        this.t2 = t2;
-        this.t3 = t3;
-    }
-    public void Tariffs(double c1, double c2, double c3){
-        System.out.println("Tariffs: " + "first" + c1 +" second: "+ c2 +"third: " + c3);
-    }
-    public void Time(double t1, double t2, double t3){
-        System.out.println("Time of the first talk: "+ t1 +" of the second: "+ t2 +" of the third: "+t3);
-    }
-    public void Calculate(double c1, double c2, double c3, double t1, double t2, double t3){
-        double countFirstTalk = c1*t1;
-        double countSecondTalk = c2*t2;
-        double countThirdTalk = c3*t3;
-        double countAllTalks = countFirstTalk + countSecondTalk + countThirdTalk;
-        System.out.println("Count for the first talk: " + countFirstTalk);
-        System.out.println("Count for the second talk: " + countSecondTalk);
-        System.out.println("Count for the third talk: " + countThirdTalk);
-        System.out.println("Count for all talks: " + countAllTalks);
+    public int getBirthYear() {
+        return birthYear;
     }
 
-}
+    public Person(){}
 
-class Flower{
-    private double radius;
+    public Person(String name, int birthYear){
+        this.name = name;
+        this.birthYear = birthYear;
+    }
+    private int age(int birthYear){
+        int age = 2020 - birthYear;
+        return age;
+    }
 
-    public double setRadius() throws IOException {
+    void Information() throws Exception {
+        String firstName;
+        String lastName;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Input radius:");
-        radius = Double.parseDouble(br.readLine());
-        return radius;
+        System.out.println("What is your firstName: ");
+        firstName = br.readLine();
+        if(firstName.isEmpty()){
+            throw new Exception("Write some text!");
+        }else{
+            char[] char1 = firstName.toCharArray();
+            for(char c : char1){
+                if(Character.isDigit(c)){
+                    throw new Exception("Please write only symbols!");
+                }
+            }
+        }
+        System.out.println("What is your lastName: ");
+        lastName = br.readLine();
+        if(lastName.isEmpty()) {
+            throw new Exception("Write some text!");
+        }else{
+            char[] char2 = lastName.toCharArray();
+            for(char c : char2){
+                if(Character.isDigit(c)){
+                    throw new Exception("Please write only symbols!");
+                }
+            }
+        }
+        System.out.println("FirstName: " + firstName + " LastName: " + lastName + " age: " + age(getBirthYear()));
     }
-
-    public double getRadius() {
-        return radius;
-    }
-    public void Calculate(double radius){
-        double area = 3.14 * Math.pow(radius,2);
-        double perimeter = 2 * 3.14 * radius;
-        System.out.println("Area of flower bed: " + area);
-        System.out.println("Perimeter of flower bed: " + perimeter);
+    void ChangeName() throws Exception{
+        String newFirstName;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("What is your new firstName: ");
+        newFirstName = br.readLine();
+        if(newFirstName.isEmpty()) {
+            throw new Exception("Write some text!");
+        }else{
+            char[] chars3 = newFirstName.toCharArray();
+            for(char c : chars3){
+                if(Character.isDigit(c)){
+                    throw new Exception("Please write only symbols!");
+                }
+            }
+        }
+        System.out.println("Your new firstName: " + newFirstName);
     }
 }
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //Address_Name task
-        System.out.println("What's your name ?");
-        System.out.print("Input your name: ");
-        String name = br.readLine();
-        System.out.println("Where do you  live? ");
-        System.out.print("Input your address: ");
-        String address = br.readLine();
-        Information info = new Information(name,address);
-        info.Show(name,address);
-
-        //Tariff Task
-        System.out.print("Tariff for the first country: ");
-        double c1 = Double.parseDouble(br.readLine());
-        System.out.print("Tariff for the second country: ");
-        double c2 = Double.parseDouble(br.readLine());
-        System.out.print("Tariff for the third country: ");
-        double c3 = Double.parseDouble(br.readLine());
-        System.out.print("Input time of the first talk: ");
-        double t1 = Double.parseDouble(br.readLine());
-        System.out.print("Input time of the second talk: ");
-        double t2 = Double.parseDouble(br.readLine());
-        System.out.print("Input time of the third talk: ");
-        double t3 = Double.parseDouble(br.readLine());
-        Tariff tariff = new Tariff(c1,c2,c3,t1,t2,t3);
-        tariff.Tariffs(c1,c2,c3);
-        tariff.Time(t1,t2,t3);
-        tariff.Calculate(c1,c2,c3,t1,t2,t3);
-
-        //Flower_task
-        Flower flower = new Flower();
-        flower.setRadius();
-        flower.Calculate(flower.getRadius());
+    public static void main(String[] args) throws Exception {
+        try{
+            Person tom = new Person("Tom", 2001);
+            tom.Information();
+            tom.ChangeName();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        Person bob = new Person("Bob", 2003);
+        bob.Information();
+        Person max = new Person("Max", 2004);
+        max.Information();
+        Person jack = new Person("Jack", 2006);
+        jack.Information();
+        Person emily = new Person("Emily", 2006);
+        emily.Information();
     }
 }
+
 
