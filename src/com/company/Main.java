@@ -9,11 +9,20 @@ class BrickSize{
     private double b;
     private double c;
 
-    public BrickSize(double a, double b, double c){
+    public BrickSize(){}
+
+    public void setA(double a) {
         this.a = a;
+    }
+
+    public void setB(double b) {
         this.b = b;
+    }
+
+    public void setC(double c) {
         this.c = c;
     }
+
     public double getA(){
         return a;
     }
@@ -28,10 +37,16 @@ class HoleSize{
     private double x;
     private double y;
 
-    public HoleSize(double x, double y){
+    public HoleSize(){}
+
+    public void setX(double x) {
         this.x = x;
+    }
+
+    public void setY(double y) {
         this.y = y;
     }
+
     public double getX(){
         return x;
     }
@@ -42,19 +57,47 @@ class HoleSize{
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        double a = 0,b = 0,c = 0,x = 0,y = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("a:");
-        double a = Double.parseDouble(br.readLine());
+        try {
+            a = Double.parseDouble(br.readLine());
+        }catch(NumberFormatException ex){
+            System.out.println("Input number!!!");
+        }
         System.out.println("b:");
-        double b = Double.parseDouble(br.readLine());
+        try {
+            b = Double.parseDouble(br.readLine());
+        }catch(NumberFormatException ex){
+            System.out.println("Input number!!!");
+        }
         System.out.println("c:");
-        double c = Double.parseDouble(br.readLine());
+        try {
+            c = Double.parseDouble(br.readLine());
+        }catch(NumberFormatException ex){
+            System.out.println("Input number!!!");
+        }
         System.out.println("x:");
-        double x = Double.parseDouble(br.readLine());
+        try {
+            x = Double.parseDouble(br.readLine());
+        }catch(NumberFormatException ex){
+            System.out.println("Input number!!!");
+        }
         System.out.println("y:");
-        double y = Double.parseDouble(br.readLine());
-        BrickSize brickSize = new BrickSize(a,b,c);
-        HoleSize holeSize = new HoleSize(x,y);
+        try {
+            y = Double.parseDouble(br.readLine());
+        }catch(NumberFormatException ex){
+            System.out.println("Input number!!!");
+        }
+
+        BrickSize brickSize = new BrickSize();
+        brickSize.setA(a);
+        brickSize.setB(b);
+        brickSize.setC(c);
+        HoleSize holeSize = new HoleSize();
+        holeSize.setX(x);
+        holeSize.setX(y);
+        
 
         if((brickSize.getA() <= holeSize.getX() && brickSize.getB() <= holeSize.getB()) ||
                 (brickSize.getA() <= holeSize.getB() && brickSize.getB() <= holeSize.getX())){
@@ -72,6 +115,5 @@ public class Main {
             System.out.println("Неможна просунути");
         }
     }
-
 }
 
